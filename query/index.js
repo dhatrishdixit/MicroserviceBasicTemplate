@@ -14,21 +14,27 @@ const queryData = {
 app.get("/completeData",(req,res)=>{
     res.status(200).json(queryData);
 })
-
+  
 app.post("/events",(req,res)=>{
     const event = req.body;
 
     if(event.type == "postCreation"){
         const {postId,title} = event.data;
         queryData[postId] = {
+            postId,
             title,
             comments:[]
         }
     }else if(event.type == "commentCreation"){
-        const {postId,commentId,content} = event.data;
+        const {postId,commentId,content,status} = event.data;
         queryData[postId].comments.push({
-            commentId,content
+            commentId,content,status
         })
+    }else if(event.type == "commentUpdation"){
+        const {postId,commentId,content,status} = event.data;
+        let comment = queryData[postId].comments.find(commentData => commentData.commentId == commentId);
+        comment.content = content;
+        comment.status = status;
     }
 
     console.log(JSON.stringify(queryData))

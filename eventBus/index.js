@@ -10,10 +10,10 @@ app.post("/events",(req,res)=>{
     
     const event = req.body;
     
-    axios.post("http://localhost:8000/events",event).then(_=>{}).catch(err=>console.log(err.message));
-    axios.post("http://localhost:8001/events",event).then(_=>{}).catch(err=>console.log(err.message));
-    axios.post("http://localhost:8002/events",event).then(_=>{}).catch(err=>console.log(err.message));
-    axios.post("http://localhost:8003/events",event).then(_=>{}).catch(err=>console.log(err.message));
+    axios.post("http://localhost:8000/events",event).then(_=>{}).catch(err=>console.log("post service error : "+ err.message));
+    axios.post("http://localhost:8001/events",event).then(_=>{}).catch(err=>console.log("comment service error : " +err.message));
+    axios.post("http://localhost:8002/events",event).then(_=>{}).catch(err=>console.log("query service error : " + err.message));
+    axios.post("http://localhost:8003/events",event).then(_=>{}).catch(err=>console.log("moderation service error : " + err.message));
 
 
     res.status(200).json({

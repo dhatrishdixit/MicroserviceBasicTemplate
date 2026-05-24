@@ -7,11 +7,36 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-app.post("/events",(req,res)=>{
-    const {type,data} = req.body;
+const delay = (time) => new Promise(resolve => {setTimeout(()=>{
+   resolve("processing done");
+},time)})
+
+app.post("/events",async (req,res)=>{
+
+    console.log("request called")
+    try {
+        const {type,data} = req.body;
+        console.log(type)
+
+        await delay(5000);
     
-    if(type == "commentCreated"){
-        
+        if(type == "commentCreation"){
+        const status = data.content.includes('orange') ? "rejected" : "approved";
+    
+        data.status = status;
+        await axios.post("http://localhost:8005/events",{
+        type:"commentModeration",
+        data
+    }); 
+       console.log(status)
+   
+    }
+
+         res.status(200).json({
+            message:"moderation done"
+        })
+    } catch (error) {
+        console.log(error)
     }
 })
 

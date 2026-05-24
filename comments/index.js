@@ -15,8 +15,24 @@ app.get("/posts/:id/comments",(req,res)=>{
     res.status(200).send(commentsByPostId[req.params.id] || []);
 })
 
-app.post("/events",(req,res)=>{
+app.post("/events",async (req,res)=>{
     console.log(req.body);
+    
+    const {type,data} = req.body;
+
+    if(type== "commentModeration"){
+
+        console.log(commentsByPostId)
+        let comment =  commentsByPostId[data.postId].find(commentData => commentData.id == data.commentId);
+        console.log(comment)
+        comment.status = data.status;
+
+        await axios.post("http://localhost:8005/events",{
+        type:"commentUpdation",
+        data
+    });
+    }
+
     res.status(200).json({
     message: `eventType: ${req.body.type}`
     })
@@ -25,11 +41,12 @@ app.post("/events",(req,res)=>{
 app.post("/posts/:id/comments",async (req,res)=>{
 try {
     const postId = req.params.id;
+    console.log(postId)
     const {content} = req.body;
     const commentId = `cc-${Math.floor(Math.random()*1e13)}`; 
 
     const comment = {
-        id:commentId,content,status:pending
+        id:commentId,content,status:"pending"
     }
 
     commentsByPostId[postId] = Object.hasOwn(commentsByPostId,postId) ? [
@@ -41,7 +58,8 @@ try {
         data:{
             postId,
             commentId,
-            content
+            content,
+            status:"pending"
         }
     });
 
