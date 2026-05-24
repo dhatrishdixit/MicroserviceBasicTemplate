@@ -6,9 +6,12 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
+const eventArr = [];
+
 app.post("/events",(req,res)=>{
     
     const event = req.body;
+    eventArr.push(event);
     
     axios.post("http://localhost:8000/events",event).then(_=>{}).catch(err=>console.log("post service error : "+ err.message));
     axios.post("http://localhost:8001/events",event).then(_=>{}).catch(err=>console.log("comment service error : " +err.message));
@@ -19,6 +22,10 @@ app.post("/events",(req,res)=>{
     res.status(200).json({
           message:"Event emitted to all the listening services",
     })
+})
+
+app.get("/events",(_,res)=>{
+    res.send(eventArr);
 })
 
 app.listen(8005,()=>{
