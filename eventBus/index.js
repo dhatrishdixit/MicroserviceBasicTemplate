@@ -10,9 +10,11 @@ app.post("/events",(req,res)=>{
     
     const event = req.body;
     
-    axios.post("http://localhost:8000/events",event).then(res=>console.log(res)).catch(err=>console.log(err));
-    axios.post("http://localhost:8001/events",event).then(res=>console.log(res)).catch(err=>console.log(err));
-    axios.post("http://localhost:8002/events",event).then(res=>console.log(res)).catch(err=>console.log("error in query service"));
+    axios.post("http://localhost:8000/events",event).then(_=>{}).catch(err=>console.log(err.message));
+    axios.post("http://localhost:8001/events",event).then(_=>{}).catch(err=>console.log(err.message));
+    axios.post("http://localhost:8002/events",event).then(_=>{}).catch(err=>console.log(err.message));
+    axios.post("http://localhost:8003/events",event).then(_=>{}).catch(err=>console.log(err.message));
+
 
     res.status(200).json({
           message:"Event emitted to all the listening services",

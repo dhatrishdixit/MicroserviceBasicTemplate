@@ -21,7 +21,7 @@ app.post("/events",(req,res)=>{
     })
 }) 
 
-//  emit event on creation 
+// emit event on creation 
   
 // {type,{postId,title}}
 app.post("/posts",async (req,res)=>{

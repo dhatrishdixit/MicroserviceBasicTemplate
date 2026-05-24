@@ -6,7 +6,7 @@ import CommentList from "./CommentList";
 const PostList = ({refresh}) => {
   const [posts, setPosts] = useState({});
 
-  // {postId,Title,comments:[]}
+  // {postId:{title,comments:[]}}
   const fetchPosts = async () => {
       try {
           const res = await axios.get("http://localhost:8002/completeData");
@@ -31,7 +31,7 @@ const PostList = ({refresh}) => {
       >
         <div className="card-body">
           <h3>{post.title}</h3>
-          <CommentList postId={post.id} />
+          <CommentList comments={post.comments} />
           <CommentCreate postId={post.id} />
         </div>
       </div>

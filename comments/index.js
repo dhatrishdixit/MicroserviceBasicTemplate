@@ -29,7 +29,7 @@ try {
     const commentId = `cc-${Math.floor(Math.random()*1e13)}`; 
 
     const comment = {
-        id:commentId,content
+        id:commentId,content,status:pending
     }
 
     commentsByPostId[postId] = Object.hasOwn(commentsByPostId,postId) ? [
