@@ -12,6 +12,7 @@ app.post("/events",(req,res)=>{
     
     const event = req.body;
     eventArr.push(event);
+    console.log("event pushed : ",event)
     
     axios.post("http://localhost:8000/events",event).then(_=>{}).catch(err=>console.log("post service error : "+ err.message));
     axios.post("http://localhost:8001/events",event).then(_=>{}).catch(err=>console.log("comment service error : " +err.message));

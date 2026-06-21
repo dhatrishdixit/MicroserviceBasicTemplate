@@ -52,5 +52,6 @@ try {
 })
 
 app.listen(8000,()=>{
+    console.log("v2")
     console.log("Post Service running on port 8000")
 })
