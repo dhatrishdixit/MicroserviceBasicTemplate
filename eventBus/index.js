@@ -14,10 +14,10 @@ app.post("/events",(req,res)=>{
     eventArr.push(event);
     console.log("event pushed : ",event)
     
-    axios.post("http://localhost:8000/events",event).then(_=>{}).catch(err=>console.log("post service error : "+ err.message));
-    axios.post("http://localhost:8001/events",event).then(_=>{}).catch(err=>console.log("comment service error : " +err.message));
-    axios.post("http://localhost:8002/events",event).then(_=>{}).catch(err=>console.log("query service error : " + err.message));
-    axios.post("http://localhost:8003/events",event).then(_=>{}).catch(err=>console.log("moderation service error : " + err.message));
+    axios.post("http://posts-clusterip-srv:8000/events",event).then(_=>{}).catch(err=>console.log("post service error : "+ err.message));
+    axios.post("http://comments-srv:8001/events",event).then(_=>{}).catch(err=>console.log("comment service error : " +err.message));
+    axios.post("http://query-srv:8002/events",event).then(_=>{}).catch(err=>console.log("query service error : " + err.message));
+    axios.post("http://moderation-srv:8003/events",event).then(_=>{}).catch(err=>console.log("moderation service error : " + err.message));
 
 
     res.status(200).json({

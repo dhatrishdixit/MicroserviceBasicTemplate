@@ -34,7 +34,7 @@ try {
         title,id:postId
     }
 
-    await axios.post("http://localhost:8005/events",{
+    await axios.post("http://event-bus-srv:8005/events",{
         type:"postCreation",
         data:{
             postId,

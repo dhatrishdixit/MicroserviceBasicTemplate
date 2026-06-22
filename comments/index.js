@@ -27,7 +27,7 @@ app.post("/events",async (req,res)=>{
         console.log(comment)
         comment.status = data.status;
 
-        await axios.post("http://localhost:8005/events",{
+        await axios.post("http://event-bus-srv:8005/events",{
         type:"commentUpdation",
         data
     });
@@ -53,7 +53,7 @@ try {
         ...commentsByPostId[postId],comment
     ] : [comment] ;
 
-    await axios.post("http://localhost:8005/events",{
+    await axios.post("http://event-bus-srv:8005/events",{
         type:"commentCreation",
         data:{
             postId,
