@@ -33,7 +33,7 @@ const handleEvent = (event) => {
 
 }
 
-app.get("/completeData",(req,res)=>{
+app.get("/posts",(req,res)=>{
     res.status(200).json(queryData);
 })
   

@@ -1,30 +1,30 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: query-depl
+  name: client-main-depl
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: query
+      app: client-main
   template:
     metadata:
       labels:
-        app: query
+        app: client-main
     spec:
       containers:
-        - name: query
-          image: fish29/query
+        - name: client-main
+          image: fish29/client-main-react
 ---
 apiVersion: v1
 kind: Service
 metadata:
-  name: query-srv
+  name: client-main-srv
 spec:
   selector:
-    app: query
+    app: client-main
   ports:
-    - name: query
+    - name: client-main
       protocol: TCP
-      port: 8002
-      targetPort: 8002
+      port: 3000
+      targetPort: 3000

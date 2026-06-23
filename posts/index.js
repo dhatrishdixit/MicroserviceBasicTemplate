@@ -24,7 +24,7 @@ app.post("/events",(req,res)=>{
 // emit event on creation 
   
 // {type,{postId,title}}
-app.post("/posts",async (req,res)=>{
+app.post("/posts/create",async (req,res)=>{
 try {
     const postId = Math.floor(Math.random()*1e8);
     

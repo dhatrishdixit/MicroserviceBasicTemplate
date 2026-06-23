@@ -9,7 +9,7 @@ const PostList = ({refresh}) => {
   // {postId:{title,comments:[]}}
   const fetchPosts = async () => {
       try {
-          const res = await axios.get("http://localhost:8002/completeData");
+          const res = await axios.get("http://posts.com/posts");
 
           setPosts(res.data);
       } catch (error) {
