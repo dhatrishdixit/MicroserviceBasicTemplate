@@ -6,7 +6,7 @@ const App = () => {
   const [refresh,setRefresh] = useState(0);
   return (
     <div className="container">
-      <h1>Create Post</h1>
+      <h1>Create Post Here</h1>
       <PostCreate setRefresh={setRefresh} />
       <hr />
       <h1>Posts</h1>
