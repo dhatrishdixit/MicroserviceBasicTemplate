@@ -39,7 +39,7 @@ build:
         manual:
           - src: "*.js"
             dest: .
-    - image: rallycoding/posts-100
+    - image: fish29/posts
       context: posts
       docker:
         dockerfile: Dockerfile
